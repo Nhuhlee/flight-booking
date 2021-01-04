@@ -45,14 +45,43 @@ module.exports.createFlight = (req, res, next) => {
   const seats = seatCodeArray.map((code) => {
     return new Seat({ code });
   });
+  let originAirport;
+  let originAirportCode;
+  let destinationAirport;
+  let destinationAirportCode;
   const { originAirportId, destinationAirportId, startTime, price } = req.body;
-  return Flight.create({
-    originAirportId,
-    destinationAirportId,
-    startTime,
-    price,
-    seats,
-  })
+  Airport.findById(originAirportId)
+    .then((airport) => {
+      if (!airport)
+        return Promise.reject({
+          message: "Airport not found",
+          status: 404,
+        });
+      originAirport = airport.name;
+      originAirportCode = airport.code;
+      return Airport.findById(destinationAirportId);
+    })
+    .then((airport) => {
+      if (!airport)
+        return Promise.reject({
+          message: "Airport not found",
+          status: 404,
+        });
+      destinationAirport = airport.name;
+      destinationAirportCode = airport.code;
+      return Flight.create({
+        originAirportId,
+        originAirport,
+        originAirportCode,
+        destinationAirportId,
+        destinationAirport,
+        destinationAirportCode,
+        startTime,
+        price,
+        seats,
+      });
+    })
+
     .then((flight) => {
       return res.status(200).json(flight);
     })

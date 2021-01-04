@@ -6,6 +6,9 @@ const BookingSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Flight",
   },
+  from: { type: String, required: true },
+  to: { type: String, required: true },
+  time: { type: Date, required: true },
   seats: [SeatSchema],
   totalPrice: { type: Number },
   bookedBy: {

@@ -1,6 +1,7 @@
 const { Seat } = require("./../models/seat.model");
 const { Booking } = require("./../models/booking.model");
 const { Flight } = require("./../models/flight.model");
+const { Airport } = require("./../models/airport.model");
 
 module.exports.createBooking = (req, res, next) => {
   const userId = req.user._id;
@@ -35,6 +36,9 @@ module.exports.createBooking = (req, res, next) => {
       return Promise.all([
         Booking.create({
           flightId,
+          from: flight.originAirport,
+          to: flight.destinationAirport,
+          time: flight.startTime,
           bookedBy: userId,
           seats: seats.map((code) => new Seat({ code, isBooked: true })),
           totalPrice: seats.length * flight.price,
@@ -64,7 +68,6 @@ module.exports.getBookings = (req, res, next) => {
 
 module.exports.getBookingsByUser = (req, res, next) => {
   const userId = req.user._id;
-  console.log(userId);
   Booking.find({ bookedBy: userId })
     .then((booking) => {
       return res.status(200).json(booking);
@@ -90,11 +93,4 @@ module.exports.updateBooking = (req, res, next) => {
     })
     .then((booking) => res.status(200).json(booking))
     .catch((err) => res.status(status.err).json(err));
-};
-
-module.exports.printBookingForUser = (req, res, next) => {
-  const userId = req.user._id;
-  Booking.find({ bookedBy: userId }).then((booking) => {
-    console.log(booking);
-  });
 };

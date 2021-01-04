@@ -13,6 +13,5 @@ router.post("/booking", authenticate, createBooking);
 router.get("/booking", getBookings);
 router.get("/booking/mybookings", authenticate, getBookingsByUser);
 router.patch("/booking/:id", updateBooking);
-router.get("/booking/print", authenticate, printBookingForUser);
 
 module.exports = router;
