@@ -1,6 +1,6 @@
 // todo: import
 import { createRouter, createWebHistory } from "vue-router";
-
+//import jwtDecode from "jwt-decode";
 // todo: 
 
 const routes = [
@@ -21,6 +21,79 @@ const routes = [
         component: () => import( './../Views/HomTemplate/DetailStationPage' )
       }
     ]
+  },
+  {
+    path: "/admin",
+    redirect: "/admin/dashboard",
+  },
+  
+  {
+    path: "/admin",
+    component: () => import("./../Views/AdminTemplate"),
+   // beforeEnter(to, from, next) {
+      //if (localStorage.getItem("token")) {
+       // try {
+        //  const user = jwtDecode(localStorage.getItem("token"));
+        //  if (user.userType === "admin") {
+        //    next();
+        //  }
+        //} catch {
+        //  next("/auth");
+       // }
+      //} else {
+      //  next("/auth");
+      //}
+    //},
+    children: [
+      {
+        path: "/admin/dashboard",
+        component: () => import("./../Views/AdminTemplate/DashboardPage"),
+      },
+      {
+        path: "/admin/stations",
+        component: () => import("./../Views/AdminTemplate/StationPage"),
+      },
+      {
+        path: "/admin/stations/:id/edit",
+        component: () => import("./../Views/AdminTemplate/EditStationPage"),
+      },
+      {
+        path: "/admin/tickets",
+        component: () => import("./../Views/AdminTemplate/TicketPage"),
+      },
+      {
+        path: "/admin/airports",
+        component: () => import("./../Views/AdminTemplate/AirportPage"),
+      },
+      {
+        path: "/admin/airports/:id/edit",
+        component: () => import("./../Views/AdminTemplate/EditAirportPage"),
+      },
+      {
+        path: "/admin/airports/add",
+        component: () => import("./../Views/AdminTemplate/AddAirportPage"),
+      },
+      {
+        path: "/admin/accounts",
+        component: () => import("./../Views/AdminTemplate/AccountPage"),
+      },
+      {
+        path: "/admin/accounts/add",
+        component: () => import("./../Views/AdminTemplate/AddAccountPage"),
+      },
+      {
+        path: "/admin/accounts/:id/edit",
+        component: () => import("./../Views/AdminTemplate/EditAccountPage"),
+      },
+      {
+        path: "/admin/about",
+        component: () => import("./../Views/AdminTemplate/AboutPage"),
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    component: () => import("./../Views/AdminTemplate/AuthPage"),
   },
   {
     path: '/:patchMatch(.*)*',

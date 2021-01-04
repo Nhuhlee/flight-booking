@@ -1,11 +1,13 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-
+import store from "./store";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'jquery/dist/jquery';
 import 'popper.js/dist/umd/popper';
 import 'bootstrap/dist/js/bootstrap.js';
+
+
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,4 +17,5 @@ import "@fortawesome/fontawesome-free/js/all.min.js";
 
 
 createApp( App )
+.use(store)
   .use( router ).mount( '#app' );
