@@ -186,3 +186,19 @@ module.exports.deleteFlight = (req, res, next) => {
       return res.status(err.status).json(err);
     });
 };
+
+module.exports.getFlightsByFunction = (req, res, next) => {
+  const { originAirportId, destinationAirportId } = req.body;
+  Flight.find({ originAirportId, destinationAirportId })
+    .then((flight) => {
+      if (!flight)
+        return Promise.reject({
+          message: "No flight is available for the selected airports",
+          status: 404,
+        });
+      return res.status(200).json(flight);
+    })
+    .catch((err) => {
+      return res.status(err.status || 500).json(err);
+    });
+};

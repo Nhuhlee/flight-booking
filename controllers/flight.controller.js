@@ -6,6 +6,7 @@ const {
   updateFlight,
   deleteFlight,
   getFlightDetail,
+  getFlightsByFunction,
 } = require("../services/flight.service");
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.put("/flights/:flightId", replaceFlight);
 router.patch("/flights/:flightId", updateFlight);
 router.get("/flights/:flightId", getFlightDetail);
 router.delete("/flights/:flightId", deleteFlight);
+router.get("/findflight", getFlightsByFunction);
 
 module.exports = router;
