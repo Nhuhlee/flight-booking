@@ -1,6 +1,6 @@
 // todo: import
 import { createRouter, createWebHistory } from "vue-router";
-//import jwtDecode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 // todo: 
 
 const routes = [
@@ -30,20 +30,20 @@ const routes = [
   {
     path: "/admin",
     component: () => import("./../Views/AdminTemplate"),
-   // beforeEnter(to, from, next) {
-      //if (localStorage.getItem("token")) {
-       // try {
-        //  const user = jwtDecode(localStorage.getItem("token"));
-        //  if (user.userType === "admin") {
-        //    next();
-        //  }
-        //} catch {
-        //  next("/auth");
-       // }
-      //} else {
-      //  next("/auth");
-      //}
-    //},
+     beforeEnter(to, from, next) {
+      if (localStorage.getItem("token")) {
+        try {
+          const user = jwtDecode(localStorage.getItem("token"));
+          if (user.userType === "Admin") {
+            next();
+          }
+        } catch {
+          next("/admin/login");
+        }
+      } else {
+        next("/admin/login");
+      }
+    },
     children: [
       {
         path: "/admin/dashboard",
@@ -92,7 +92,7 @@ const routes = [
     ],
   },
   {
-    path: "/auth",
+    path: "/admin/login",
     component: () => import("./../Views/AdminTemplate/AuthPage"),
   },
   {

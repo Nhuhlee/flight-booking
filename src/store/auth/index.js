@@ -36,7 +36,7 @@ const actions = {
   actLogin({ commit, dispatch }, authData) {
     commit("loginRequest");
     api
-      .post("/users/login", {
+      .post("/login", {
         email: authData.email,
         password: authData.password,
       })
@@ -44,9 +44,9 @@ const actions = {
         commit("loginSuccess", result.data.token);
 
         const user = jwtDecode(result.data.token);
-        if (user.userType === "client") {
+        if (user.userType === "Client") {
           return Promise.reject({
-            response: { data: { message: "Ban k co quyen truy cap" } },
+            response: { data: { message: "Ban khong co quyen truy cap..." } },
           });
         }
         const exp = (user.exp - user.iat) * 1000;
@@ -68,7 +68,7 @@ const actions = {
     commit("clearAuth");
     localStorage.removeItem("token");
     localStorage.removeItem("exp");
-    router.replace("/auth");
+    router.replace("/admin/login");
   },
 
   setTimeoutLogout({ dispatch }, exp) {
