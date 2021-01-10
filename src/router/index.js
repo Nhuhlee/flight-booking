@@ -89,6 +89,18 @@ const routes = [
         path: "/admin/about",
         component: () => import("./../Views/AdminTemplate/AboutPage"),
       },
+      {
+        path: "/admin/flights",
+        component: () => import("./../Views/AdminTemplate/FlightPage"),
+      },
+      {
+        path: "/admin/flights/add",
+        component: () => import("./../Views/AdminTemplate/FlightPage"),
+      },
+      {
+        path: "/admin/flights/:id/edit",
+        component: () => import("./../Views/AdminTemplate/EditFlightPage"),
+      },
     ],
   },
   {

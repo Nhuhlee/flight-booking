@@ -16,8 +16,8 @@
     <router-link
             active-class="active"
             class="nav-link"
-            to="/admin/stations"
-            >Stations</router-link
+            to="/admin/flights"
+            >Flight</router-link
           >
   </a>
   <a href="#" class="w3-bar-item w3-button">

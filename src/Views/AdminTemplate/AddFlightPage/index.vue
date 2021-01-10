@@ -2,15 +2,15 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6 mx-auto">
-        <h3>Add Account</h3>
+        <h3>Add Flight</h3>
         
-        <form @submit.prevent="handleAdd(formUser)">
+        <form @submit.prevent="handleAdd(formFlight)">
           <div class="form-group">
-            <label>User Name:</label>
+            <label>Flight Name:</label>
             <input
               type="text"
               class="form-control"
-              v-model="formUser.fullName"
+              v-model="formFlight.fullName"
             />
           </div>
           <div class="form-group">
@@ -18,7 +18,7 @@
             <input
               type="text"
               class="form-control"
-              v-model="formUser.email"
+              v-model="formFlight.email"
             />
           </div>
             <div class="form-group">
@@ -26,7 +26,7 @@
             <input
               type="text"
               class="form-control"
-              v-model="formUser.password"
+              v-model="formFlight.password"
             />
           </div>
           <div class="form-group">
@@ -34,7 +34,7 @@
             <input
               type="text"
               class="form-control"
-              v-model="formUser.passwordConfirm"
+              v-model="formFlight.passwordConfirm"
             />
           </div>
           <button type="submit" class="btn btn-success">Insert</button>
@@ -48,7 +48,7 @@
 export default {
   data() {
     return {
-      formUser: {
+      formFlight: {
         email: "",
         password: "",
         passwordConfirm:"",
@@ -59,24 +59,24 @@ export default {
 
   methods: {
     handleAdd(newValue) {
-      this.$store.dispatch("fetchAddUser", newValue);
+      this.$store.dispatch("fetchAddflight", newValue);
     },
   },
 
   computed: {
     loading() {
-      return this.$store.state.user.loading;
+      return this.$store.state.flight.loading;
     },
     err() {
-      return this.$store.state.user.err;
+      return this.$store.state.flight.err;
     },
-    userDetail() {
-      return this.$store.state.user.data;
+    flightDetail() {
+      return this.$store.state.flight.data;
     },
   },
   watch: {
-    userDetail(newValue) {
-      this.formUser = newValue;
+    flightDetail(newValue) {
+      this.formFlight = newValue;
     },
   },
 };
