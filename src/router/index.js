@@ -82,7 +82,7 @@ const routes = [
         component: () => import("./../Views/AdminTemplate/AddAccountPage"),
       },
       {
-        path: "/admin/accounts/:id/edit",
+        path: "/admin/accounts/update",
         component: () => import("./../Views/AdminTemplate/EditAccountPage"),
       },
       {

@@ -1,7 +1,6 @@
 import * as types from "./constant";
 import { api } from "./../../api";
 import router from "../../router";
-
 const state = {
   loading: false,
   data: null,
@@ -49,19 +48,10 @@ const actions = {
         commit(types.M_USER_FAILED, err);
       });
   },
-  fetchDeleteUser({ commit, dispatch }, id) {
-    api
-      .delete(`/users/${id}`)
-      .then(() => {
-        dispatch(types.A_FETCH_LIST_USER);
-      })
-      .catch((err) => {
-        commit(types.M_USER_FAILED, err);
-      });
-  },
   fetchUpdateUser({ commit }, formUser) {
+    commit(types.M_USER_REQUEST);
     api
-      .put(`/users/${formUser.id}`, formUser)
+      .patch(`/users/updatePassword`, formUser)
       .then(() => {
         router.push("/admin/accounts");
       })

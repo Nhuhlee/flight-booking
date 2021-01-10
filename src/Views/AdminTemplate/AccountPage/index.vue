@@ -9,7 +9,11 @@
           class="btn btn-success"
           :to="`/admin/accounts/add`"
       >Add new user</router-link>
-      <br>
+            &nbsp;&nbsp;
+      <router-link
+          class="btn btn-info mr-2"
+          :to="`/admin/accounts/update`"
+      >Reset</router-link>
     </div>
     <br>
     <div class="row">
@@ -33,7 +37,6 @@
           </tbody>
         </table>
       </div>
-      <DeleteComfirm :id="id" />
     </div>
   </div>
 </template>
@@ -41,11 +44,9 @@
 <script>
 import Loader from "./../../../components/Loader";
 import * as types from "./../../../store/account/constant";
-import DeleteComfirm from "./../../../components/DeleteConfirmAccount";
 export default {
   components: {
     Loader,
-    DeleteComfirm,
   },
   data() {
     return {

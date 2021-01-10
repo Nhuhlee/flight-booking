@@ -3,6 +3,7 @@ import router from "../../router";
 import jwtDecode from "jwt-decode";
 import setHeader from "./../../utils/setHeader";
 
+
 const state = {
   token: null,
   err: null,
