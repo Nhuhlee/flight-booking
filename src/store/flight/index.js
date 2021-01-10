@@ -9,17 +9,17 @@ const state = {
 };
 
 const mutations = {
-  [types.M_AIRPORT_REQUEST](state) {
+  [types.M_FLIGHT_REQUEST](state) {
     state.loading = true;
     state.data = null;
     state.err = null;
   },
-  [types.M_AIRPORT_SUCCESS](state, payload) {
+  [types.M_FLIGHT_SUCCESS](state, payload) {
     state.loading = false;
     state.data = payload;
     state.err = null;
   },
-  [types.M_AIRPORT_FAILED](state, payload) {
+  [types.M_FLIGHT_FAILED](state, payload) {
     state.loading = false;
     state.data = null;
     state.err = payload;
@@ -27,36 +27,36 @@ const mutations = {
 };
 
 const actions = {
-  [types.A_FETCH_LIST_AIRPORT]({ commit }) {
-    commit(types.M_AIRPORT_REQUEST);
+  [types.A_FETCH_LIST_FLIGHT]({ commit }) {
+    commit(types.M_FLIGHT_REQUEST);
     api
       .get("/flights")
       .then((result) => {
-        commit(types.M_AIRPORT_SUCCESS, result.data);
+        commit(types.M_FLIGHT_SUCCESS, result.data);
       })
       .catch((err) => {
-        commit(types.M_AIRPORT_FAILED, err);
+        commit(types.M_FLIGHT_FAILED, err);
       });
   },
   fetchDetailFlight({ commit }, id) {
-    commit(types.M_AIRPORT_REQUEST);
+    commit(types.M_FLIGHT_REQUEST);
     api
       .get(`/flights/${id}`)
       .then((result) => {
-        commit(types.M_AIRPORT_SUCCESS, result.data);
+        commit(types.M_FLIGHT_SUCCESS, result.data);
       })
       .catch((err) => {
-        commit(types.M_AIRPORT_FAILED, err);
+        commit(types.M_FLIGHT_FAILED, err);
       });
   },
   fetchDeleteFlight({ commit, dispatch }, id) {
     api
       .delete(`/flights/${id}`)
       .then(() => {
-        dispatch(types.A_FETCH_LIST_AIRPORT);
+        dispatch(types.A_FETCH_LIST_FLIGHT);
       })
       .catch((err) => {
-        commit(types.M_AIRPORT_FAILED, err);
+        commit(types.M_FLIGHT_FAILED, err);
       });
   },
   fetchUpdateFlight({ commit }, formFlight) {
@@ -66,7 +66,7 @@ const actions = {
         router.push("/admin/flights");
       })
       .catch((err) => {
-        commit(types.M_AIRPORT_FAILED, err);
+        commit(types.M_FLIGHT_FAILED, err);
       });
   },
   fetchAddFlight({ commit }, formFlight) {
@@ -76,7 +76,7 @@ const actions = {
         router.push("/admin/flights");
       })
       .catch((err) => {
-        commit(types.M_AIRPORT_FAILED, err);
+        commit(types.M_FLIGHT_FAILED, err);
       });
   },
 };
