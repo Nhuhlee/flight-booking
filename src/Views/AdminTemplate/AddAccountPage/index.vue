@@ -3,6 +3,9 @@
     <div class="row">
       <div class="col-sm-6 mx-auto">
         <h3>Add Account</h3>
+        <div class="alert alert-danger" v-if="err">
+          {{ err.response.data.message }}
+        </div>
         <form @submit.prevent="handleAdd(formUser)">
           <div class="form-group">
             <label>User Name:</label>
@@ -65,6 +68,9 @@ export default {
   computed: {
     loading() {
       return this.$store.state.user.loading;
+    },
+    err() {
+      return this.$store.state.user.err;
     },
     userDetail() {
       return this.$store.state.user.data;
