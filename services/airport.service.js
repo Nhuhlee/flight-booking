@@ -62,6 +62,7 @@ module.exports.getAirportDetail = (req, res, next) => {
           status: 404,
         });
       }
+      console.log(airport.photo);
       return res.status(200).json(airport);
     })
     .catch((err) => res.status(err.status).json(err));
@@ -85,4 +86,20 @@ module.exports.deleteAirport = (req, res, next) => {
     .catch((err) =>
       res.status(err.status).json({ message: "Failed to delete" })
     );
+};
+
+module.exports.uploadPhoto = (req, res, next) => {
+  const { airportId } = req.body;
+  Airport.findById(airportId)
+    .then((airport) => {
+      if (!airport)
+        return Promise.reject({
+          message: "Airport not found",
+          status: 404,
+        });
+      airport.photo = req.file.path;
+      return airport.save();
+    })
+    .then((airport) => res.status(200).json(airport))
+    .catch((err) => res.status(err.status || 500).json(err));
 };

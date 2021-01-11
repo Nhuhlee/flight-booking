@@ -2,7 +2,9 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const config = require("./config");
+
 const airportController = require("./controllers/airport.controller");
+
 const flightController = require("./controllers/flight.controller");
 const userController = require("./controllers/user.controller");
 const bookingController = require("./controllers/booking.controller");
@@ -27,6 +29,8 @@ mongoose
   .catch(console.log);
 
 app.use(express.json());
+
+// app.use("/uploads", express.static("./uploads"));
 
 app.use("/api", airportController);
 app.use("/api", flightController);

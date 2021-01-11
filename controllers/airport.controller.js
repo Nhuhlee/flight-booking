@@ -1,4 +1,7 @@
 const express = require("express");
+
+const { uploadImage } = require("../middlewares/uploadImage");
+
 const {
   getAirport,
   createAirport,
@@ -6,6 +9,7 @@ const {
   replaceAirport,
   updateAirport,
   deleteAirport,
+  uploadPhoto,
 } = require("../services/airport.service");
 
 const router = express.Router();
@@ -16,5 +20,6 @@ router.put("/airports/:airportId", replaceAirport);
 router.patch("/airports/:airportId", updateAirport);
 router.get("/airports/:airportId", getAirportDetail);
 router.delete("/airports/:airportId", deleteAirport);
+router.patch("/updatePhoto", uploadImage("photo"), uploadPhoto);
 
 module.exports = router;
