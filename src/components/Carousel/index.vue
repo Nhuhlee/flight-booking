@@ -16,7 +16,9 @@
         <div class="myCarousel-banner__search">
           <div class="row mx-0">
             <div class="col-sm-5 row-flex justify-content-between">
-              <div class="d-flex justify-content-between align-items-center">
+              <div
+                class="d-flex justify-content-between align-items-center w-100"
+              >
                 <i class="fa fa-map-marker-alt mr-3"></i>
                 <!-- <input type="text" placeholder="Ho Chi Minh" /> -->
                 <!--  -->
@@ -46,7 +48,9 @@
             </div>
 
             <div class="col-sm-5 row-flex justify-content-between">
-              <div class="d-flex justify-content-between align-items-center">
+              <div
+                class="d-flex justify-content-between align-items-center w-100"
+              >
                 <i class="fa fa-map-marker-alt mr-3"></i>
                 <!-- <input type="text" placeholder="Ho Chi Minh" /> -->
                 <!--  -->
