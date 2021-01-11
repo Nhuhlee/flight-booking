@@ -58,8 +58,12 @@ const routes = [
         component: () => import("./../Views/AdminTemplate/EditStationPage"),
       },
       {
-        path: "/admin/tickets",
-        component: () => import("./../Views/AdminTemplate/TicketPage"),
+        path: "/admin/bookings",
+        component: () => import("./../Views/AdminTemplate/BookingPage"),
+      },
+      {
+        path: "/admin/airports/add",
+        component: () => import("./../Views/AdminTemplate/AddAirportPage"),
       },
       {
         path: "/admin/airports",
@@ -95,7 +99,7 @@ const routes = [
       },
       {
         path: "/admin/flights/add",
-        component: () => import("./../Views/AdminTemplate/FlightPage"),
+        component: () => import("./../Views/AdminTemplate/AddFlightPage"),
       },
       {
         path: "/admin/flights/:id/edit",

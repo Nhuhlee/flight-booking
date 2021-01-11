@@ -24,8 +24,8 @@
     <router-link
             active-class="active"
             class="nav-link"
-            to="/admin/tickets"
-            >Tickket</router-link
+            to="/admin/bookings"
+            >Booking</router-link
           >
   </a>
   <a href="#" class="w3-bar-item w3-button">
