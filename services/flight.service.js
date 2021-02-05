@@ -100,6 +100,20 @@ module.exports.getFlights = (req, res, next) => {
     });
 };
 
+module.exports.findFlightsbyCodes = (req, res, next) => {
+  const { originAirportCode, destinationAirportCode } = req.body;
+  return Flight.find({ originAirportCode, destinationAirportCode })
+    .then((flight) => {
+      if (!flight)
+        return Promise.reject({
+          message: "Flight not found on this route",
+          status: 404,
+        });
+      return res.status(200).json(flight);
+    })
+    .catch((err) => res.status(err.status || 500).json(err));
+};
+
 module.exports.replaceFlight = (req, res, next) => {
   const { flightId } = req.params;
   return Flight.findById(flightId)
@@ -188,8 +202,8 @@ module.exports.deleteFlight = (req, res, next) => {
 };
 
 module.exports.getFlightsByFunction = (req, res, next) => {
-  const { originAirportId, destinationAirportId } = req.body;
-  Flight.find({ originAirportId, destinationAirportId })
+  const { from, to } = req.body;
+  Flight.find({ originAirportId: from, destinationAirportId: to })
     .then((flight) => {
       if (!flight)
         return Promise.reject({
