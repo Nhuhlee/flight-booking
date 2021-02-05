@@ -20,11 +20,9 @@
                 <i class="fa fa-map-marker-alt mr-3"></i>
                 <!-- <input type="text" placeholder="Ho Chi Minh" /> -->
                 <!--  -->
-                <select class="custom-select shadow-none border-0">
+                <select class="custom-select shadow-none border-0" v-model="searchValues.from">
                   <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option v-for="(airport) in data" :key="airport.code" :value="airport._id">{{airport.name}}</option>
                 </select>
               </div>
               <!--  -->
@@ -50,11 +48,9 @@
                 <i class="fa fa-map-marker-alt mr-3"></i>
                 <!-- <input type="text" placeholder="Ho Chi Minh" /> -->
                 <!--  -->
-                <select class="custom-select shadow-none border-0">
+                <select class="custom-select shadow-none border-0" v-model="searchValues.to">
                   <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option v-for="(airport) in data" :key="airport.code" :value="airport._id">{{airport.name}}</option>          
                 </select>
               </div>
               <!--  -->
@@ -74,6 +70,7 @@
                 type="button"
                 class="btn btn-warning text-white"
                 style="border: none; height: 100%; padding: 0; width: 100%"
+                @click="handleSearch(searchValues)"
               >
                 SEARCH TICKET
               </button>
@@ -86,7 +83,35 @@
 </template>
 
 <script>
-export default {};
+import * as types from "./../../store/airport/constant";
+export default {
+  data(){
+    return{
+      id: "",
+      searchValues: {
+        from:"",
+        to:""
+      }
+    }
+  },
+  created(){
+    this.$store.dispatch(types.A_FETCH_LIST_AIRPORT);
+  },
+  computed: {
+    data(){
+      return this.$store.state.airport.data;
+    }
+  },
+  methods: {
+    handleSearch(search_values){
+      // console.log(search_values);
+      this.$store.dispatch("fetchFlightsByIds",search_values);
+      console.log(this.$store.state.flight)
+      // this.id = this.$store.state.flight.data.id;
+
+    },
+  }
+};
 </script>
 
 <style lang="scss">

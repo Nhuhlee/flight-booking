@@ -38,6 +38,20 @@ const actions = {
         commit(types.M_FLIGHT_FAILED, err);
       });
   },
+  fetchFlightsByIds({ commit }, ids) {
+    commit(types.M_FLIGHT_REQUEST);
+    console.log(ids);
+    api
+      .post(`/findflight`, ids)
+      .then((result) => {
+        console.log(result.data[0]);
+        commit(types.M_FLIGHT_SUCCESS, result.data[0]);
+        console.log("a");
+      })
+      .catch((err) => {
+        commit(types.M_FLIGHT_FAILED, err);
+      });
+  },
   fetchDetailFlight({ commit }, id) {
     commit(types.M_FLIGHT_REQUEST);
     api

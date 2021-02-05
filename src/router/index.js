@@ -1,36 +1,40 @@
 // todo: import
 import { createRouter, createWebHistory } from "vue-router";
 import jwtDecode from "jwt-decode";
-// todo: 
+// todo:
 
 const routes = [
   {
-    path: '', component: () => import( './../Views/HomTemplate' ),
+    path: "",
+    component: () => import("./../Views/HomTemplate"),
     children: [
       {
-        path: '',
-        component: () => import( './../Views/HomTemplate/HomePage' )
+        path: "",
+        component: () => import("./../Views/HomTemplate/HomePage"),
       },
       {
-        path: 'station',
-        component: () => import( './../Views/HomTemplate/StationPage' )
-      }
-      ,
+        path: "station",
+        component: () => import("./../Views/HomTemplate/StationPage"),
+      },
       {
-        path: 'station/:id',
-        component: () => import( './../Views/HomTemplate/DetailStationPage' )
-      }
-    ]
+        path: "station/:id",
+        component: () => import("./../Views/HomTemplate/DetailStationPage"),
+      },
+      {
+        path: "flight/:id",
+        component: () => import("./../Views/HomTemplate/FoundFlightsPage"),
+      },
+    ],
   },
   {
     path: "/admin",
     redirect: "/admin/dashboard",
   },
-  
+
   {
     path: "/admin",
     component: () => import("./../Views/AdminTemplate"),
-     beforeEnter(to, from, next) {
+    beforeEnter(to, from, next) {
       if (localStorage.getItem("token")) {
         try {
           const user = jwtDecode(localStorage.getItem("token"));
@@ -108,15 +112,15 @@ const routes = [
     component: () => import("./../Views/AdminTemplate/AuthPage"),
   },
   {
-    path: '/:patchMatch(.*)*',
-    component: () => import( './../components/PageNotFound' )
-  }
+    path: "/:patchMatch(.*)*",
+    component: () => import("./../components/PageNotFound"),
+  },
 ];
 
-const router = createRouter( {
-  history: createWebHistory( process.env.BASE_URL ),
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   linkExactActiveClass: "active",
   routes,
-} );
+});
 
 export default router;
