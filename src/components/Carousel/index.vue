@@ -20,9 +20,18 @@
                 <i class="fa fa-map-marker-alt mr-3"></i>
                 <!-- <input type="text" placeholder="Ho Chi Minh" /> -->
                 <!--  -->
-                <select class="custom-select shadow-none border-0" v-model="searchValues.from">
+                <select
+                  class="custom-select shadow-none border-0"
+                  v-model="searchValues.from"
+                >
                   <option selected>Open this select menu</option>
-                  <option v-for="(airport) in data" :key="airport.code" :value="airport._id">{{airport.name}}</option>
+                  <option
+                    v-for="airport in data"
+                    :key="airport.code"
+                    :value="airport._id"
+                  >
+                    {{ airport.name }}
+                  </option>
                 </select>
               </div>
               <!--  -->
@@ -48,9 +57,18 @@
                 <i class="fa fa-map-marker-alt mr-3"></i>
                 <!-- <input type="text" placeholder="Ho Chi Minh" /> -->
                 <!--  -->
-                <select class="custom-select shadow-none border-0" v-model="searchValues.to">
+                <select
+                  class="custom-select shadow-none border-0"
+                  v-model="searchValues.to"
+                >
                   <option selected>Open this select menu</option>
-                  <option v-for="(airport) in data" :key="airport.code" :value="airport._id">{{airport.name}}</option>          
+                  <option
+                    v-for="airport in data"
+                    :key="airport.code"
+                    :value="airport._id"
+                  >
+                    {{ airport.name }}
+                  </option>
                 </select>
               </div>
               <!--  -->
@@ -77,6 +95,36 @@
             </div>
           </div>
         </div>
+        <div class="btn btn-success" @click="checkFlightsFound">
+          Check FlightFound
+        </div>
+        <div>
+          <table class="table bg-white">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>From code</th>
+                <th>From name</th>
+                <th>To code</th>
+                <th>To name</th>
+                <th>Star time</th>
+                <th>Price</th>
+                <th>Modify</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(flight, index) in flightsFound" :key="flight._id">
+                <td>{{ index + 1 }}</td>
+                <td>{{ flight.originAirportCode }}</td>
+                <td>{{ flight.originAirport }}</td>
+                <td>{{ flight.destinationAirportCode }}</td>
+                <td>{{ flight.destinationAirport }}</td>
+                <td>{{ flight.startTime }}</td>
+                <td>{{ flight.price }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
@@ -85,32 +133,44 @@
 <script>
 import * as types from "./../../store/airport/constant";
 export default {
-  data(){
-    return{
+  data() {
+    return {
       id: "",
       searchValues: {
-        from:"",
-        to:""
-      }
-    }
+        from: "",
+        to: "",
+      },
+    };
   },
-  created(){
+  created() {
     this.$store.dispatch(types.A_FETCH_LIST_AIRPORT);
   },
   computed: {
-    data(){
+    data() {
       return this.$store.state.airport.data;
-    }
+    },
+    flightsFound() {
+      return this.$store.state.flight.data;
+    },
   },
   methods: {
-    handleSearch(search_values){
-      // console.log(search_values);
-      this.$store.dispatch("fetchFlightsByIds",search_values);
-      console.log(this.$store.state.flight)
-      // this.id = this.$store.state.flight.data.id;
-
+    checkFlightsFound() {
+      console.log(this.flightsFound);
+      console.log("store flights found: ", this.$store.state.flight.data);
     },
-  }
+    handleSearch(search_values) {
+      console.log(search_values);
+      this.$store.dispatch("fetchFlightsByIds", search_values);
+      // console.log(this.flightsFound);
+      // console.log(this.$store.state.flight)
+      // this.id = this.$store.state.flight.data.id;
+    },
+  },
+  watch: {
+    flightsFound: function (newValue) {
+      this.flightsFound = newValue;
+    },
+  },
 };
 </script>
 

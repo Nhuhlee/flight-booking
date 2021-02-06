@@ -44,9 +44,9 @@ const actions = {
     api
       .post(`/findflight`, ids)
       .then((result) => {
-        console.log(result.data[0]);
-        commit(types.M_FLIGHT_SUCCESS, result.data[0]);
-        console.log("a");
+        console.log(result.data);
+        commit(types.M_FLIGHT_SUCCESS, result.data);
+        console.log(state);
       })
       .catch((err) => {
         commit(types.M_FLIGHT_FAILED, err);
