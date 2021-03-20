@@ -4,7 +4,7 @@ import auth from "./auth";
 import airport from "./airport";
 import user from "./account";
 import flight from "./flight";
-
-export default createStore({
-  modules: { station, auth, airport, user , flight},
-});
+import seat from "./seat";
+export default createStore( {
+  modules: { station, auth, airport, user, flight, seat },
+} );

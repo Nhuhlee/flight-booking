@@ -3,24 +3,21 @@
     <Loader />
   </template>
   <div class="container" v-else>
-     <br/>
+    <br />
     <div class="row">
-     <br/>
-    <div>
-      <router-link
-          class="btn btn-success"
-          :to="`/`"
-      >Back</router-link>
-      <br/>
-    </div>
-     <br/>
+      <br />
+      <div>
+        <router-link class="btn btn-success" :to="`/`">Back</router-link>
+        <br />
+      </div>
+      <br />
       <div class="col-md-12">
-        <br/>
+        <br />
         <table class="table">
           <thead>
             <tr>
-            <th>No.</th>
-            <th>From code</th>
+              <th>No.</th>
+              <th>From code</th>
               <th>From name</th>
               <th>To code</th>
               <th>To name</th>

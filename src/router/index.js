@@ -6,24 +6,28 @@ import jwtDecode from "jwt-decode";
 const routes = [
   {
     path: "",
-    component: () => import("./../Views/HomTemplate"),
+    component: () => import( "./../Views/HomTemplate" ),
     children: [
       {
         path: "",
-        component: () => import("./../Views/HomTemplate/HomePage"),
+        component: () => import( "./../Views/HomTemplate/HomePage" ),
       },
       {
         path: "station",
-        component: () => import("./../Views/HomTemplate/StationPage"),
+        component: () => import( "./../Views/HomTemplate/StationPage" ),
       },
       {
         path: "station/:id",
-        component: () => import("./../Views/HomTemplate/DetailStationPage"),
+        component: () => import( "./../Views/HomTemplate/DetailStationPage" ),
       },
       {
         path: "flight/:id",
-        component: () => import("./../Views/HomTemplate/FoundFlightsPage"),
+        component: () => import( "./../Views/HomTemplate/FoundFlightsPage" ),
       },
+      {
+        path: "seat",
+        component: () => import( "./../Views/HomTemplate/SeatPage" )
+      }
     ],
   },
   {
@@ -33,94 +37,94 @@ const routes = [
 
   {
     path: "/admin",
-    component: () => import("./../Views/AdminTemplate"),
-    beforeEnter(to, from, next) {
-      if (localStorage.getItem("token")) {
+    component: () => import( "./../Views/AdminTemplate" ),
+    beforeEnter ( to, from, next ) {
+      if ( localStorage.getItem( "token" ) ) {
         try {
-          const user = jwtDecode(localStorage.getItem("token"));
-          if (user.userType === "Admin") {
+          const user = jwtDecode( localStorage.getItem( "token" ) );
+          if ( user.userType === "Admin" ) {
             next();
           }
         } catch {
-          next("/admin/login");
+          next( "/admin/login" );
         }
       } else {
-        next("/admin/login");
+        next( "/admin/login" );
       }
     },
     children: [
       {
         path: "/admin/dashboard",
-        component: () => import("./../Views/AdminTemplate/DashboardPage"),
+        component: () => import( "./../Views/AdminTemplate/DashboardPage" ),
       },
       {
         path: "/admin/stations",
-        component: () => import("./../Views/AdminTemplate/StationPage"),
+        component: () => import( "./../Views/AdminTemplate/StationPage" ),
       },
       {
         path: "/admin/stations/:id/edit",
-        component: () => import("./../Views/AdminTemplate/EditStationPage"),
+        component: () => import( "./../Views/AdminTemplate/EditStationPage" ),
       },
       {
         path: "/admin/tickets",
-        component: () => import("./../Views/AdminTemplate/TicketPage"),
+        component: () => import( "./../Views/AdminTemplate/TicketPage" ),
       },
       {
         path: "/admin/airports",
-        component: () => import("./../Views/AdminTemplate/AirportPage"),
+        component: () => import( "./../Views/AdminTemplate/AirportPage" ),
       },
       {
         path: "/admin/airports/:id/edit",
-        component: () => import("./../Views/AdminTemplate/EditAirportPage"),
+        component: () => import( "./../Views/AdminTemplate/EditAirportPage" ),
       },
       {
         path: "/admin/airports/add",
-        component: () => import("./../Views/AdminTemplate/AddAirportPage"),
+        component: () => import( "./../Views/AdminTemplate/AddAirportPage" ),
       },
       {
         path: "/admin/accounts",
-        component: () => import("./../Views/AdminTemplate/AccountPage"),
+        component: () => import( "./../Views/AdminTemplate/AccountPage" ),
       },
       {
         path: "/admin/accounts/add",
-        component: () => import("./../Views/AdminTemplate/AddAccountPage"),
+        component: () => import( "./../Views/AdminTemplate/AddAccountPage" ),
       },
       {
         path: "/admin/accounts/update",
-        component: () => import("./../Views/AdminTemplate/EditAccountPage"),
+        component: () => import( "./../Views/AdminTemplate/EditAccountPage" ),
       },
       {
         path: "/admin/about",
-        component: () => import("./../Views/AdminTemplate/AboutPage"),
+        component: () => import( "./../Views/AdminTemplate/AboutPage" ),
       },
       {
         path: "/admin/flights",
-        component: () => import("./../Views/AdminTemplate/FlightPage"),
+        component: () => import( "./../Views/AdminTemplate/FlightPage" ),
       },
       {
         path: "/admin/flights/add",
-        component: () => import("./../Views/AdminTemplate/FlightPage"),
+        component: () => import( "./../Views/AdminTemplate/FlightPage" ),
       },
       {
         path: "/admin/flights/:id/edit",
-        component: () => import("./../Views/AdminTemplate/EditFlightPage"),
+        component: () => import( "./../Views/AdminTemplate/EditFlightPage" ),
       },
     ],
   },
   {
     path: "/admin/login",
-    component: () => import("./../Views/AdminTemplate/AuthPage"),
+    component: () => import( "./../Views/AdminTemplate/AuthPage" ),
   },
   {
     path: "/:patchMatch(.*)*",
-    component: () => import("./../components/PageNotFound"),
+    component: () => import( "./../components/PageNotFound" ),
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+const router = createRouter( {
+  history: createWebHistory( process.env.BASE_URL ),
   linkExactActiveClass: "active",
   routes,
-});
+} );
 
 export default router;
