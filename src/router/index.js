@@ -27,6 +27,15 @@ const routes = [
       {
         path: "seat",
         component: () => import( "./../Views/HomTemplate/SeatPage" )
+      },
+      {
+        path: 'airports',
+        component: () => import( './../Views/HomTemplate/AirportPage' )
+      }
+      ,
+      {
+        path: 'airports/:id',
+        component: () => import( './../Views/HomTemplate/DetailAirportPage' )
       }
     ],
   },
