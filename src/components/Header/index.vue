@@ -29,11 +29,14 @@
               <span class="sr-only">(current)</span>
             </router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link class="nav-link" to="/station">Station</router-link>
-          </li>
+          </li> -->
           <li class="nav-item">
             <router-link class="nav-link" to="/airports">Airports</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/seat">Seat</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/admin/login">Admin</router-link>
@@ -106,3 +109,4 @@ export default {
 
 <style>
 </style>
+
