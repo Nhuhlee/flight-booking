@@ -3,7 +3,7 @@ import * as types from './constant';
 // const api = axios.create( {
 //   baseURL: "https://vexere-2.herokuapp.com/api",
 // } );
-import { api } from './../../api';
+import { api } from "./../../api";
 
 const state = {
   loading: false,
@@ -36,7 +36,7 @@ const actions = {
     commit( types.M_SEAT_REQUEST );
 
     api
-      .get( '/trips' )
+      .get( '/flights' )
       .then( ( result ) => {
         console.log( result );
         commit( types.M_SEAT_SUCCESS, result.data[ 0 ].seats );
