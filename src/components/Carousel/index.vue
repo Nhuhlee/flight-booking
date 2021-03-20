@@ -121,6 +121,13 @@
                 <td>{{ flight.destinationAirport }}</td>
                 <td>{{ flight.startTime }}</td>
                 <td>{{ flight.price }}</td>
+                <td>
+                  <router-link
+                    class="btn btn-success"
+                    :to="`/seat/${flight._id}`"
+                    >Choose</router-link
+                  >
+                </td>
               </tr>
             </tbody>
           </table>
