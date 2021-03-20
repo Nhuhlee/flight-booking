@@ -1,9 +1,9 @@
 import * as types from './constant';
 import axios from 'axios';
-const api = axios.create( {
-  baseURL: "https://vexere-2.herokuapp.com/api",
-} );
-
+// const api = axios.create( {
+//   baseURL: "https://vexere-2.herokuapp.com/api",
+// } );
+import api from './../../api';
 
 const state = {
   loading: false,
