@@ -33,6 +33,9 @@
             <router-link class="nav-link" to="/station">Station</router-link>
           </li>
           <li class="nav-item">
+            <router-link class="nav-link" to="/airports">Airports</router-link>
+          </li>
+          <li class="nav-item">
             <router-link class="nav-link" to="/admin/login">Admin</router-link>
           </li>
           <li class="nav-item" style="margin-right: 150px">
