@@ -1,13 +1,13 @@
 <template>
-  <div v-if="loading"><Loader /></div>
-  <div class="container mt-5" v-else>
+  <div class="container mt-5">
     <div class="row">
       <div class="col-sm-6 mx-auto">
         <div class="alert alert-danger" v-if="err">
           {{ err.response.data.message }}
         </div>
         <form @submit.prevent="handleLogin">
-          <h3>LOGIN ADMIN PAGE</h3>
+          <h2 class="text-success">Sign up successfully !</h2>
+          <h3>LOGIN </h3>
           <div class="form-group">
             <label>Email</label>
             <input type="email" class="form-control" v-model="email" />
@@ -26,12 +26,9 @@
 </template>
 
 <script>
-import Loader from "./../../../components/Loader";
-import * as types from "./../../../store/auth/constant";
+import * as types from "./../../store/auth/constant.js";
+
 export default {
-  components: {
-    Loader,
-  },
   data() {
     return {
       email: "",

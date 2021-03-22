@@ -97,7 +97,7 @@
 
 <script>
 import ModalSignUp from "./modal-signup.vue";
-import ModalLogin from "./modal-login";
+import ModalLogin from "./modal-login.vue";
 
 export default {
   components: {
